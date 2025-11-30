@@ -1,0 +1,49 @@
+.footer { 
+  background: #FFF9F0; 
+  border-top: 1px solid var(--border); 
+  margin-top: auto; 
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.footer-content {
+  /* Constrains the width so it's not too wide */
+  max-width: 1000px; 
+  margin: 0 auto;
+  padding: 0 2rem;
+  
+  /* Split Layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  font-weight: 500;
+}
+
+.footer-right {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.footer-right a {
+  color: var(--text-main);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-right a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Mobile Stack */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
+}

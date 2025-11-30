@@ -1,0 +1,103 @@
+/* Base Navbar Styles */
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2.5rem;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out, background 0.3s ease;
+}
+
+/* --- SCENARIO 1: HOME PAGE (Fixed & Animated) --- */
+
+/* Hidden initially (top of page) */
+.navbar-home-hidden {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  transform: translateY(-100%); /* Hides it above screen */
+  background: transparent;
+  border-bottom: none;
+  pointer-events: none;
+}
+
+/* Slides down when scrolled */
+.navbar-home-visible {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  transform: translateY(0); /* Slides into view */
+  background: rgba(255, 249, 240, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  pointer-events: all;
+}
+
+/* --- SCENARIO 2: OTHER PAGES (Sticky & Always Visible) --- */
+.navbar-standard {
+  position: sticky; /* Sticks to top, pushing content down */
+  top: 0;
+  width: 100%;
+  transform: translateY(0);
+  background: rgba(255, 249, 240, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Brand & Link Styles */
+.brand {
+  display: flex;
+  align-items: center;
+  /* UPDATED: Reduced gap from 12px to 8px */
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.brand span {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.6); 
+  padding: 6px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  pointer-events: auto; /* Ensure clickable even if parent logic varies */
+}
+
+.nav-item {
+  background: transparent;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  color: var(--primary);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-item.active {
+  background: var(--primary);
+  color: #FFFFFF; 
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .nav-links span { display: none; }
+  .navbar { padding: 0.8rem 1.5rem; }
+}

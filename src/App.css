@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* --- Palette: Pind Green & Cream --- */
+  --primary: #0B6623;          /* Deep Forest Green */
+  --primary-hover: #074918;    /* Darker Green for hover */
+  --primary-light: #E8F5E9;    /* Very light green */
+  
+  /* Gradients */
+  --accent-gradient: linear-gradient(135deg, #0B6623 0%, #2E7D32 100%);
+  --hero-gradient: linear-gradient(180deg, #FFF9F0 0%, #FAF6EE 100%);
+
+  /* Neutrals (Warm Cream Base) */
+  --bg-body: #FFF9F0;          /* Warm Cream */
+  --bg-card: #FFFFFF;          /* Pure White for contrast against cream */
+  --border: #E2DDD0;           /* Warm beige border */
+  
+  /* Typography Colors */
+  --text-main: #1A2E1A;        /* Very dark green-black (softer than pure black) */
+  --text-muted: #5F6F5F;       /* Earthy grey-green */
+
+  /* UI Variables */
+  --radius-lg: 20px;           
+  --radius-md: 14px;
+  --shadow-sm: 0 2px 4px rgba(11, 102, 35, 0.05);
+  --shadow-md: 0 8px 16px -4px rgba(11, 102, 35, 0.08);
+  --shadow-lg: 0 20px 40px -10px rgba(11, 102, 35, 0.12);
+  --shadow-glow: 0 0 0 4px rgba(11, 102, 35, 0.15);
+
+  --font-main: 'Plus Jakarta Sans', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* --- Global Reset & Base --- */
+* { box-sizing: border-box; }
+
+html { 
+  scroll-behavior: smooth; 
+  font-size: 18px; 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  margin: 0;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-.App-header {
-  background-color: #282c34;
+/* --- Layout Wrappers --- */
+.app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+  animation: fadeIn 0.8s ease-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* --- Global Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes bounce-arrow {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
 }

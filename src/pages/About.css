@@ -1,0 +1,193 @@
+/* src/pages/About.css */
+
+.about-page { 
+  min-height: 100vh;
+  background: var(--bg-body);
+  display: flex;
+  justify-content: center;
+}
+
+.about-container { 
+  width: 100%;
+  max-width: 900px;
+  padding: 0 1.5rem 4rem;
+  text-align: center;
+}
+
+.contact-header {
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+}
+
+.contact-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.contact-header p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Grid Layout */
+.creators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Card Styling */
+.creator-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem 2rem; 
+  padding-top: 5rem; /* Space for the image */
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; 
+  /* FIX: Changed from 'hidden' to 'visible' so the image can pop out the top */
+  overflow: visible; 
+}
+
+.creator-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+/* --- LARGE, OVERLAPPING PROFILE IMAGE STYLES --- */
+.profile-img-container {
+  width: 180px; 
+  height: 180px; 
+  border-radius: 50%;
+  overflow: hidden; /* This stays hidden to crop the image into a circle */
+  position: absolute; 
+  top: -90px; /* Pulls it up by half its height for overlap effect */
+  background: #F0FDF4; 
+  box-shadow: 0 0 0 5px white, 0 0 0 7px var(--primary); 
+  z-index: 10; 
+}
+
+/* --- FIXED IMAGE STYLE --- */
+.profile-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;       
+  object-position: top center; 
+}
+
+.profile-img.fallback {
+  filter: grayscale(100%);
+  padding: 25px; 
+  object-fit: contain;
+}
+
+
+.creator-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  margin-top: 1rem; 
+}
+
+.role {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+/* Buttons */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-size: 1rem;
+  gap: 8px; 
+}
+
+.linkedin {
+  background: #0077b5;
+  color: white;
+  border: 1px solid #0077b5;
+}
+
+.linkedin:hover {
+  background: #005e93;
+  border-color: #005e93;
+  transform: scale(1.02);
+}
+
+.github {
+  background: #24292e; 
+  color: white;
+  border: 1px solid #24292e;
+}
+
+.github:hover {
+  background: #1b1f23;
+  border-color: #1b1f23;
+  transform: scale(1.02);
+}
+
+
+/* General Contact Section */
+.general-contact {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-top: 2rem;
+}
+
+.general-contact h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.general-contact p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.email-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.email-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: #F9FDF9;
+}
+
+@media (max-width: 768px) {
+  .contact-header h1 { font-size: 2.5rem; }
+  .creators-grid { grid-template-columns: 1fr; }
+}

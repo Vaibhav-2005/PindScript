@@ -1,0 +1,159 @@
+/* src/pages/Docs.css */
+
+.docs-page {
+  /* Reduced offset to 80px (Navbar height) to pull content up */
+  min-height: 100vh;
+  background: var(--bg-body);
+}
+
+.docs-hero {
+  text-align: center;
+  /* Removed all vertical margins/padding to eliminate distance above Documentation word */
+  margin: 0; 
+  /* Setting padding-top to 0 and padding-bottom to a minimal value */
+  padding: 0 1.5rem 0.5rem; 
+}
+
+.docs-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.docs-hero p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.docs-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Added a bit of top padding here to push the content grid away from the hero text */
+  padding: 1.5rem 1.5rem 4rem; /* Reduced from 2rem to 1.5rem */
+}
+
+.docs-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.doc-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px; 
+  padding: 1rem;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.keyword {
+  font-family: var(--font-code);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+.meaning {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: #F3F4F6;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.description {
+  color: var(--text-main);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+  flex-grow: 1;
+}
+
+/* --- SNIPPET STYLES --- */
+
+.snippet-header {
+  display: flex;
+  justify-content: flex-end;
+  height: 0;
+  position: relative;
+  top: 8px;
+  right: 4px;
+  z-index: 10;
+}
+
+.copy-btn {
+  background: white;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  padding: 3px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.copy-btn.copied {
+  background: #22c55e;
+  color: white;
+  border-color: #22c55e;
+}
+
+.code-snippet {
+  background: #FAFCFA;
+  border-radius: 8px;
+  padding: 0.8rem;
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  color: #1A2E1A;
+  border: 1px solid var(--border);
+}
+
+.code-snippet pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .docs-hero h1 { font-size: 2rem; }
+  .card-grid { grid-template-columns: 1fr; }
+}
