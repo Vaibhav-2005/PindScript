@@ -45,7 +45,7 @@
 
 /* Card Styling */
 .creator-card {
-  background: white;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 2.5rem 2rem; 
@@ -73,8 +73,8 @@
   overflow: hidden; /* This stays hidden to crop the image into a circle */
   position: absolute; 
   top: -90px; /* Pulls it up by half its height for overlap effect */
-  background: #F0FDF4; 
-  box-shadow: 0 0 0 5px white, 0 0 0 7px var(--primary); 
+  background: var(--bg-card); 
+  box-shadow: 0 0 0 5px var(--bg-card), 0 0 0 7px var(--primary); 
   z-index: 10; 
 }
 
@@ -150,7 +150,7 @@
 
 /* General Contact Section */
 .general-contact {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 3rem;
@@ -172,7 +172,7 @@
   display: inline-flex;
   align-items: center;
   padding: 1rem 2rem;
-  background: white;
+  background: var(--bg-card);
   border: 2px solid var(--border);
   border-radius: 50px;
   color: var(--text-main);

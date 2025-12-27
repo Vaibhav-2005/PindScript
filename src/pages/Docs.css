@@ -1,16 +1,13 @@
 /* src/pages/Docs.css */
 
 .docs-page {
-  /* Reduced offset to 80px (Navbar height) to pull content up */
   min-height: 100vh;
   background: var(--bg-body);
 }
 
 .docs-hero {
   text-align: center;
-  /* Removed all vertical margins/padding to eliminate distance above Documentation word */
   margin: 0; 
-  /* Setting padding-top to 0 and padding-bottom to a minimal value */
   padding: 0 1.5rem 0.5rem; 
 }
 
@@ -54,7 +51,7 @@
 }
 
 .doc-card {
-  background: white;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px; 
   padding: 1rem;
@@ -87,9 +84,10 @@
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--text-muted);
-  background: #F3F4F6;
+  background: var(--line-bg);
   padding: 2px 8px;
   border-radius: 6px;
+  border: 1px solid var(--border);
 }
 
 .description {
@@ -138,12 +136,12 @@
 }
 
 .code-snippet {
-  background: #FAFCFA;
+  background: var(--line-bg);
   border-radius: 8px;
   padding: 0.8rem;
   font-family: var(--font-code);
   font-size: 0.8rem;
-  color: #1A2E1A;
+  color: var(--text-main);
   border: 1px solid var(--border);
 }
 

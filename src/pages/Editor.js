@@ -9,6 +9,18 @@ export default function Editor({ code, setCode, output, setOutput }) {
   const tractorImage = "/tractor.png";
   const [serverStatus, setServerStatus] = useState('checking');
   const [isAnimating, setIsAnimating] = useState(false);
+  const [bhangraMode, setBhangraMode] = useState(false);
+  const [bhangraBursts, setBhangraBursts] = useState([]);
+  const hypeLines = useMemo(() => ([
+    'Balle balle! Code ne jadoo kar ditta ✨',
+    'Chaa gaye guru, logic ne dhol vajaa ditta 🥁',
+    'Oye hoye! Bug bhaag gya, bas dance karo 💃',
+    'Shava shava! Output te Punjab di mehak 🌾',
+    'Pind da progger, vibe hi alag hai 🚜',
+    'Bass, hun taan Silicon Valley vi hilju 😊',
+    'Kudi pat gayi: clean code + bhangra mode 😎',
+  ]), []);
+  const [hypeLine, setHypeLine] = useState('Tap Bhangra Mode to drop some dhol beats.');
 
   const textareaRef = useRef(null);
 
@@ -150,6 +162,39 @@ export default function Editor({ code, setCode, output, setOutput }) {
     }
   };
 
+  const pickHypeLine = () => hypeLines[Math.floor(Math.random() * hypeLines.length)];
+
+  useEffect(() => {
+    if (!bhangraMode) {
+      setBhangraBursts([]);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setBhangraBursts((prev) => {
+        const next = [
+          ...prev.slice(-10),
+          {
+            id: Date.now() + Math.random(),
+            left: 5 + Math.random() * 90,
+            delay: Math.random() * 0.4,
+            text: pickHypeLine(),
+            emoji: prev.length % 2 === 0 ? '💃' : '🕺',
+          }
+        ];
+        return next;
+      });
+    }, 900);
+
+    return () => clearInterval(interval);
+  }, [bhangraMode]);
+
+  const toggleBhangraMode = () => {
+    const next = !bhangraMode;
+    setBhangraMode(next);
+    setHypeLine(next ? pickHypeLine() : 'Bhangra paused. Hit RUN to wake the dhol.');
+  };
+
   // RUN BUTTON — points to Render backend
   const runCode = async () => {
     if (serverStatus === 'offline') {
@@ -159,15 +204,22 @@ export default function Editor({ code, setCode, output, setOutput }) {
     setOutput("⏳ Processing...");
 
     try {
+      if (bhangraMode) {
+        setHypeLine(pickHypeLine());
+      }
+
       const res = await axios.post(`${API_BASE}/execute`, { code }, { timeout: 10000 });
 
       if (res.data.error) {
-        setOutput("🛑 Error: " + res.data.error);
+        const errorMsg = "🛑 Error: " + res.data.error;
+        setOutput(bhangraMode ? `💥 ${pickHypeLine()}\n\n${errorMsg}` : errorMsg);
       } else {
-        setOutput(res.data.output || "⚠️ No output.");
+        const baseOutput = res.data.output || "⚠️ No output.";
+        setOutput(bhangraMode ? `💥 ${pickHypeLine()}\n\n${baseOutput}` : baseOutput);
       }
     } catch (err) {
-      setOutput("🛑 Error: " + err.message);
+      const netError = "🛑 Error: " + err.message;
+      setOutput(bhangraMode ? `💥 ${pickHypeLine()}\n\n${netError}` : netError);
     }
   };
 
@@ -203,6 +255,21 @@ export default function Editor({ code, setCode, output, setOutput }) {
         </div>
       )}
 
+      {bhangraMode && (
+        <div className="bhangra-overlay">
+          {bhangraBursts.map((burst) => (
+            <div
+              key={burst.id}
+              className="bhangra-burst"
+              style={{ left: `${burst.left}%`, animationDelay: `${burst.delay}s` }}
+            >
+              <div className="burst-emoji">{burst.emoji}</div>
+              <div className="burst-text">{burst.text}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
       <div className="home-container">
         <div className="shape-blob blob-1"></div>
         <div className="shape-blob blob-2"></div>
@@ -219,6 +286,8 @@ export default function Editor({ code, setCode, output, setOutput }) {
             The world's first programming language rooted in the soil of Punjab.
             Write logic in your mother tongue.
           </p>
+
+          <div className="hype-chip">{hypeLine}</div>
 
           <button className="btn-cta" onClick={startTransition}>
             <span>Start Coding</span>
@@ -237,7 +306,12 @@ export default function Editor({ code, setCode, output, setOutput }) {
           <div className="code-panel">
             <div className="panel-toolbar">
               <div className="panel-title">SOURCE CODE</div>
+              <div className="toolbar-actions">
+                <button className={`btn-bhangra ${bhangraMode ? 'active' : ''}`} onClick={toggleBhangraMode}>
+                  {bhangraMode ? 'Bhangra ON' : 'Bhangra Mode'}
+                </button>
               <button className="btn-run" onClick={runCode}>RUN</button>
+              </div>
             </div>
 
             <div className="editor-body">

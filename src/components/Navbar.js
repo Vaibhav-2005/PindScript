@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
-export default function Navbar({ page, setPage }) {
+export default function Navbar({ page, setPage, theme = 'light', toggleTheme }) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
@@ -76,6 +76,13 @@ export default function Navbar({ page, setPage }) {
       </div>
 
       <div className="nav-links">
+        <button
+          onClick={toggleTheme}
+          className="nav-item theme-toggle"
+          title="Toggle dark mode"
+        >
+          {theme === 'light' ? '🌙 Dark' : '🌞 Light'}
+        </button>
         {navItems.map((item) => (
           <button
             key={item.id}
