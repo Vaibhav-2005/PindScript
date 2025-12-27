@@ -26,7 +26,7 @@
   position: fixed;
   top: 0; left: 0; width: 100%;
   transform: translateY(0); /* Slides into view */
-  background: rgba(255, 249, 240, 0.95);
+  background: var(--nav-glass);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   pointer-events: all;
@@ -38,7 +38,7 @@
   top: 0;
   width: 100%;
   transform: translateY(0);
-  background: rgba(255, 249, 240, 0.95);
+  background: var(--nav-glass);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
@@ -65,7 +65,7 @@
 .nav-links {
   display: flex;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.6); 
+  background: var(--nav-chip); 
   padding: 6px;
   border-radius: 16px;
   border: 1px solid var(--border);
@@ -87,7 +87,7 @@
 
 .nav-item:hover {
   color: var(--primary);
-  background: #FFFFFF;
+  background: var(--bg-card);
   box-shadow: var(--shadow-sm);
 }
 
@@ -95,6 +95,10 @@
   background: var(--primary);
   color: #FFFFFF; 
   box-shadow: var(--shadow-md);
+}
+
+.theme-toggle {
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {

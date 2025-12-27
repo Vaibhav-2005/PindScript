@@ -8,6 +8,14 @@ import './App.css';
 
 export default function App() {
   const [page, setPage] = useState('editor');
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'light';
+    const saved = window.localStorage.getItem('pind_theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  });
 
   // --- STATE LIFTED HERE TO PERSIST ACROSS NAVIGATION ---
   const [code, setCode] = useState(
@@ -34,9 +42,17 @@ vikha("Sat Sri Akal");`
     link.href = '/favicon.png';
   }, []);
 
+  // --- APPLY THEME TO ROOT ---
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    window.localStorage.setItem('pind_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+
   return (
     <div className="app-container">
-      <Navbar page={page} setPage={setPage} />
+      <Navbar page={page} setPage={setPage} theme={theme} toggleTheme={toggleTheme} />
 
       <main
         className={page === 'editor' ? '' : 'main-content'}
